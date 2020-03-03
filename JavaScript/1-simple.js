@@ -1,14 +1,5 @@
 'use strict';
 
-class Node {
-  constructor(list, data) {
-    this.list = list;
-    this.data = data;
-    this.prev = null;
-    this.next = null;
-  }
-}
-
 class List {
   constructor() {
     this.first = null;
@@ -17,7 +8,7 @@ class List {
   }
 
   push(data) {
-    const node = new Node(this, data);
+    const node = { list: this, data, prev: null, next: null };
     node.prev = this.last;
     if (this.length === 0) this.first = node;
     else this.last.next = node;
