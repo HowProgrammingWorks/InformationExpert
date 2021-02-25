@@ -11,14 +11,11 @@ class RingBuffer {
     const { size, offset } = this;
     const { length } = data;
     const available = size - offset;
-    const end = Math.min(offset + length, size + 1);
+    const len = Math.min(available, size, length);
     const rest = available - length;
-    let position = 0;
-    for (let i = offset; i < end; i++) {
-      this.buffer[i] = data.charCodeAt(position++);
-    }
-    this.offset += position;
-    if (this.offset > size) this.offset = 0;
+    this.buffer.write(data, offset, len);
+    this.offset += len;
+    if (this.offset === size) this.offset = 0;
     if (rest < 0) this.write(data.slice(rest));
   }
 }
