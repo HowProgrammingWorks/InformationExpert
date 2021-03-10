@@ -18,4 +18,6 @@ const write = (buf, data) => {
   if (rest < 0) write(buf, data.slice(rest));
 };
 
-module.exports = { alloc, write };
+const read = (buf) => buf.buffer.toString('utf8');
+
+module.exports = { alloc, write, read };
