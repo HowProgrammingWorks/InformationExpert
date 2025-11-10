@@ -1,10 +1,16 @@
 'use strict';
 
-const alloc = (size) => ({
-  size,
-  buffer: Buffer.alloc(size),
-  offset: 0,
-});
+const buffers = [];
+
+const alloc = (size) => {
+  const instance = {
+    size,
+    buffer: Buffer.alloc(size),
+    offset: 0,
+  };
+  buffers.push(instance);
+  return instance;
+};
 
 const write = (buf, data) => {
   const { size, offset } = buf;
